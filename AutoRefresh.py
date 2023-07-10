@@ -110,41 +110,43 @@ while ((exit_flag == 0) and (time.time() < start_time+run_timeout)):
     rand_y = random.randrange(-15, 15)
 #Checks for covenant
     if (Coven_pos) != None:   
-        time.sleep(random.uniform(0.2, 0.4))      
+        time.sleep(random.uniform(1, 1.5))      
         buy('covenant')
         covenant_count=covenant_count+1
         bought = True 
 
 #Checks for mystic
     if (Mystic_pos != None):
-        time.sleep(random.uniform(0.2, 0.4))      
+        time.sleep(random.uniform(1, 1.5))      
         buy('mystic')
         mystic_count=mystic_count+1
         bought = True 
 
+
+    if(bought == False):
 #Scroll down
-    time.sleep(random.uniform(0.2, 0.4))
-    scroll_pt_x = random.randint(1100,1550)
-    scroll_pt_y = random.randint(400,680)
+        time.sleep(random.uniform(0.2, 0.4))
+        scroll_pt_x = random.randint(1100,1550)
+        scroll_pt_y = random.randint(400,680)
 
-    click(scroll_pt_x, scroll_pt_y)
-    pyautogui.scroll(-random.randint(3,7), x=scroll_pt_x, y=scroll_pt_y)
+        click(scroll_pt_x, scroll_pt_y)
+        pyautogui.scroll(-random.randint(3,7), x=scroll_pt_x, y=scroll_pt_y)
 
-    time.sleep(3.5)
-    Coven_pos2=pyautogui.locateOnScreen('covenant.png',confidence=0.8)
-    Mystic_pos2=pyautogui.locateOnScreen('mystic.png',confidence=0.8)
-	
-#Checks for covenant
-    if ((Coven_pos2 != None) and (Coven_pos == None) and bought == False):
-        time.sleep(0.2)
-        buy('covenant')
-        covenant_count=covenant_count+1
+        time.sleep(3.5)
+        Coven_pos2=pyautogui.locateOnScreen('covenant.png',confidence=0.8)
+        Mystic_pos2=pyautogui.locateOnScreen('mystic.png',confidence=0.8)
         
-#checks for mystic
-    if ((Mystic_pos2 != None) and (Mystic_pos == None) and bought == False):
-        time.sleep(0.2)        
-        buy('mystic')
-        mystic_count=mystic_count+1
+    #Checks for covenant
+        if ((Coven_pos2 != None) and (Coven_pos == None) and bought == False):
+            time.sleep(0.2)
+            buy('covenant')
+            covenant_count=covenant_count+1
+            
+    #checks for mystic
+        if ((Mystic_pos2 != None) and (Mystic_pos == None) and bought == False):
+            time.sleep(0.2)        
+            buy('mystic')
+            mystic_count=mystic_count+1
         
 #Finally refreshes
 #When testing, pause to allow user to exit
@@ -155,11 +157,12 @@ while ((exit_flag == 0) and (time.time() < start_time+run_timeout)):
 
     if exit_flag == 1:
         break
-    
+    time.sleep(0.5)
     RB_point=pyautogui.center(RB_pos)
     click(RB_point[0]+rand_x, RB_point[1]+rand_y)
     click(RB_point[0]+rand_x, RB_point[1]+rand_y)
-    time.sleep(0.1) #wait for confirm to appear
+    time.sleep(0.5) #wait for confirm to appear
+    bought = False
     
     timeout_start = time.time()
     while(time.time() < (timeout_start + timeout)):

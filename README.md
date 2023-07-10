@@ -27,5 +27,5 @@ pip install opencv-python
 pip install pyautogui
 pip install mouse
 pip install pillow
-pip install pywin32	#this one is required python 3.10, 3.11 will not do
+pip install pywin32	#this one requires python 3.10, 3.11 will not do
 ```

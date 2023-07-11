@@ -7,7 +7,9 @@ This code is a modification from the original by [dengpris](https://github.com/d
 ![](https://media.giphy.com/media/NSAX9N2SyPUVrih2E0/giphy-downsized-large.gif)
 
 ## How to Run:
-1. Make sure you have [Python version 3.10](https://www.python.org/downloads/release/python-31011/) and the correct dependencies installed (see below)
+1. Make sure you have [Python version 3.10](https://www.python.org/downloads/release/python-31011/) and also [Python version 3.11](https://www.python.org/downloads/release/python-3114/)  and the correct dependencies installed (see below)
+	> After installing each python verion, click on them again then modify, after that you should click all of the optional upgrades and settings that you can click on for both versions
+	> Then open command prompt, and install the dependencies listed below
 2. Set your resolution to 1920x1080. This macro will not work for other resolutions. Otherwise you will have to replace all the png files with your own
 3. Open and maximize Bluestacks, E7 on Window 11, any Emulator would do
 4. Open Epic Seven, then enter Secret Shop
@@ -27,5 +29,5 @@ pip install opencv-python
 pip install pyautogui
 pip install mouse
 pip install pillow
-pip install pywin32	#this one requires python 3.10, 3.11 will not do
+pip install pywin32
 ```

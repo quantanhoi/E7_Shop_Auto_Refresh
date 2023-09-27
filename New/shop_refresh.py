@@ -80,14 +80,20 @@ def refresh():
 def confirm_buy(BM_type):
     if(BM_type == "Covenant"):
         confirm_pos = pyautogui.locateOnScreen("covenant_confirm.png", confidence=default_confidence)
+        if(confirm_pos is None):
+            return False
+        
         #using mouse click for refresh button here
         mouse_click_rb(confirm_pos)
         print("confirm buy covenant")
     if(BM_type == "Mystic"):
         confirm_pos = pyautogui.locateOnScreen("mystic_confirm.png", confidence=default_confidence)
+        if(confirm_pos is None):
+            return False
         #using mouse click for refresh button here
         mouse_click_rb(confirm_pos)
         print("confirm buy mystic")
+    return True
 
 def find_covenant():
     BM_pos = pyautogui.locateOnScreen('covenant.png', confidence=default_confidence)
@@ -119,14 +125,8 @@ def refresh_loop():
 def loop():
     while True:
         try:
-            status = find_covenant()
-            if(status == True):
-                refresh_loop()
-                continue
-            status = find_mystic()
-            if(status == True):
-                refresh_loop()
-                continue
+            find_covenant()
+            find_mystic()
             scroll()
             time.sleep(delay_interval())
             find_covenant()

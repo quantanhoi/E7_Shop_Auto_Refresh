@@ -7,8 +7,6 @@ import keyboard
 # Set the duration in minutes
 duration_minutes = float(input("Script will run for (enter in minute): "))
 
-
-
 # Convert the duration to seconds
 duration_seconds = duration_minutes * 60
 
@@ -21,6 +19,21 @@ covenant_bought = 0
 buy_button_pos_x = 800
 buy_button_pos_y = 40
 default_confidence = 0.8
+FULL_HD_WIDTH = 1920
+FULL_HD_HEIGHT = 1080
+
+def input_resolution():
+    choice = int(input("Resolution? (1 for fullHD, 2 for Custom): "))
+    if choice == 1:
+        return
+    elif choice == 2:
+        global custom_width, custom_height, buy_button_pos_x, buy_button_pos_y
+        custom_width = int(input("custom width: "))
+        custom_height = int(input("custom height: "))
+        buy_button_pos_x *= (custom_width/FULL_HD_WIDTH)
+        buy_button_pos_y *= (custom_height/FULL_HD_HEIGHT)
+
+
 
 def delay_visual():
     delay_visual = random.uniform(2, 2.5)
@@ -164,6 +177,7 @@ def loop():
 
 
 if __name__ == "__main__":
+    input_resolution()
     loop()
     print_bought()
 

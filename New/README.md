@@ -9,6 +9,7 @@ This macro helps the user refresh the Secret Shop and buy Covenant and Mystic bo
 	> After installing each python verion, click on them again then modify, after that you should click all of the optional upgrades and settings that you can click
 	> Then open command prompt, and install the dependencies listed below
 2. This Script currently only work on android subsystem for windows 11, I don't have windows 10 so I don't know if it will works on other emulator, but on bluestack it doesn't work as the emulator isn't compatible with virtual click from OS 
+3. You can set the custom resolution after inputting for how long the code will run (for example 2k monitor is 2560x1440 (width x height))
 4. Open Epic Seven, Maximize the game window, then enter Secret Shop
 5. Run the Python script
 	>If running from terminal, make sure the refresh button is visible on the screen

@@ -3,12 +3,27 @@ import time
 import random
 import keyboard
 
+
+# Set the duration in minutes
+duration_minutes = float(input("Script will run for (enter in minute): "))
+
+
+
+# Convert the duration to seconds
+duration_seconds = duration_minutes * 60
+
+# Get the start time
+start_time = time.time()
+
+mystic_bought = 0
+covenant_bought = 0
+
 buy_button_pos_x = 800
 buy_button_pos_y = 40
 default_confidence = 0.8
 
 def delay_visual():
-    delay_visual = random.uniform(1.5, 2)
+    delay_visual = random.uniform(2, 2.5)
     return delay_visual
 
 def delay_interval():
@@ -62,7 +77,8 @@ def scroll():
 
 def confirm_refresh():
     confirm_refresh_pos = pyautogui.locateOnScreen("confirm_refresh.png", confidence= default_confidence)
-    mouse_click_rb(confirm_refresh_pos)
+    if(confirm_refresh_pos is not None):
+        mouse_click_rb(confirm_refresh_pos)
     
 def refresh():
     RB_pos = pyautogui.locateOnScreen('refresh_button.png', confidence=default_confidence)
@@ -78,6 +94,8 @@ def refresh():
 
 
 def confirm_buy(BM_type):
+    global covenant_bought
+    global mystic_bought
     if(BM_type == "Covenant"):
         confirm_pos = pyautogui.locateOnScreen("covenant_confirm.png", confidence=default_confidence)
         if(confirm_pos is None):
@@ -86,6 +104,8 @@ def confirm_buy(BM_type):
         #using mouse click for refresh button here
         mouse_click_rb(confirm_pos)
         print("confirm buy covenant")
+        covenant_bought += 5
+        
     if(BM_type == "Mystic"):
         confirm_pos = pyautogui.locateOnScreen("mystic_confirm.png", confidence=default_confidence)
         if(confirm_pos is None):
@@ -93,6 +113,7 @@ def confirm_buy(BM_type):
         #using mouse click for refresh button here
         mouse_click_rb(confirm_pos)
         print("confirm buy mystic")
+        mystic_bought += 50
     return True
 
 def find_covenant():
@@ -121,7 +142,10 @@ def refresh_loop():
     refresh()
     time.sleep(delay_visual())
 
-
+def print_bought():
+    print("Covenant count: " + str(covenant_bought))
+    print("Mystic count: " + str(mystic_bought))
+    
 def loop():
     while True:
         try:
@@ -132,10 +156,14 @@ def loop():
             find_covenant()
             find_mystic()
             refresh_loop()
+            elapsed_time = time.time() - start_time
+            if elapsed_time >= duration_seconds:
+                break
         except KeyboardInterrupt:
             break
 
 
 if __name__ == "__main__":
     loop()
+    print_bought()
 

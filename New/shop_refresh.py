@@ -162,6 +162,7 @@ def print_bought():
 def loop():
     while True:
         try:
+            time.sleep(delay_interval())
             find_covenant()
             find_mystic()
             scroll()
